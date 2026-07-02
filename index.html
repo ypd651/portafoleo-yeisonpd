@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YPD651 — Dev Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div id="loading-title">YPD651</div>
+  <div style="font-family:var(--font-pixel);font-size:.45rem;color:var(--neon-green)">PLAYER ONE</div>
+  <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+  <p>CARGANDO PORTAFOLIO...</p>
+</div>
+
+<!-- CURSORS -->
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
+
+<!-- MOBILE HAMBURGER -->
+<button id="hamburger" onclick="toggleSidebar()">☰</button>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <button id="sidebar-toggle" onclick="toggleSidebar()" title="Menú">≡</button>
+  <div class="sb-divider"></div>
+
+  <a class="sb-item active" onclick="showPage('home')">
+    <span class="sb-icon">🏠</span><span class="sb-label">INICIO</span>
+  </a>
+  <a class="sb-item" onclick="showPage('projects')">
+    <span class="sb-icon">📁</span><span class="sb-label">PROYECTOS</span>
+  </a>
+  <a class="sb-item" onclick="showPage('skills')">
+    <span class="sb-icon">⚡</span><span class="sb-label">HABILIDADES</span>
+  </a>
+  <a class="sb-item" onclick="showPage('gallery')">
+    <span class="sb-icon">🎮</span><span class="sb-label">GALERÍA</span>
+  </a>
+  <a class="sb-item" onclick="showPage('goku')">
+    <span class="sb-icon">🔥</span><span class="sb-label">MINI-GAME</span>
+  </a>
+  <a class="sb-item" onclick="showPage('about')">
+    <span class="sb-icon">👾</span><span class="sb-label">SOBRE MÍ</span>
+  </a>
+  <a class="sb-item" onclick="showPage('contact')">
+    <span class="sb-icon">📡</span><span class="sb-label">CONTACTO</span>
+  </a>
+
+  <div class="sb-divider"></div>
+  <a class="sb-item" href="https://github.com/ypd651" target="_blank">
+    <span class="sb-icon">🐙</span><span class="sb-label">GITHUB</span>
+  </a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main id="main">
+
+  <!-- ═══ HOME PAGE ═══ -->
+  <div id="page-home" class="page active fade-in">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bg-glow"></div>
+      <span class="deco-pixel" style="top:15%;left:8%;animation-delay:0s">🕹️</span>
+      <span class="deco-pixel" style="top:20%;right:10%;animation-delay:1s">👾</span>
+      <span class="deco-pixel" style="bottom:20%;left:12%;animation-delay:2s">🎮</span>
+      <span class="deco-pixel" style="bottom:15%;right:8%;animation-delay:.5s">💾</span>
+      <div class="hero-tag">[ PLAYER ONE READY ]</div>
+      <h1 class="hero-title">YPD651<br>DEV</h1>
+      <div class="hero-sub" id="typing-sub">// FULL STACK DEVELOPER</div>
+      <p class="hero-desc">Desarrollador apasionado por el código y los videojuegos. Construyendo el futuro digital, un commit a la vez.</p>
+      <div class="hero-btns">
+        <a class="btn btn-primary" onclick="showPage('projects')">📁 VER PROYECTOS</a>
+        <a class="btn btn-ghost" href="https://github.com/ypd651" target="_blank">🐙 GITHUB</a>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-item"><span>REPOS</span><span id="stat-repos">--</span></div>
+      <div class="stat-item"><span>LENGUAJES</span><span id="stat-langs">--</span></div>
+      <div class="stat-item"><span>STARS</span><span id="stat-stars">--</span></div>
+      <div class="stat-item"><span>SEGUIDORES</span><span id="stat-followers">--</span></div>
+    </div>
+
+    <!-- FEATURED PROJECTS (preview) -->
+    <section class="section" id="featured">
+      <div class="section-title">PROYECTOS DESTACADOS</div>
+      <p class="section-desc">Mis repos más recientes cargados directo desde GitHub API</p>
+      <div class="neon-line"></div>
+      <div id="projects-grid-home">
+        <div class="projects-loading">[ CARGANDO REPOS... ]</div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a class="btn btn-primary" onclick="showPage('projects')">VER TODOS →</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ PROJECTS PAGE ═══ -->
+  <div id="page-projects" class="page fade-in">
+    <section class="section">
+      <div class="section-title">TODOS LOS PROYECTOS</div>
+      <p class="section-desc">Repositorios cargados en tiempo real desde github.com/ypd651</p>
+      <div class="neon-line"></div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2rem;" id="filter-bar">
+        <button class="chip" onclick="filterRepos('all')" id="filter-all" style="background:rgba(0,245,255,.2)">TODOS</button>
+        <button class="chip" onclick="filterRepos('JavaScript')" id="filter-js">JAVASCRIPT</button>
+        <button class="chip" onclick="filterRepos('Python')" id="filter-py">PYTHON</button>
+        <button class="chip" onclick="filterRepos('HTML')" id="filter-html">HTML</button>
+        <button class="chip" onclick="filterRepos('TypeScript')" id="filter-ts">TYPESCRIPT</button>
+        <button class="chip" onclick="filterRepos('other')" id="filter-other">OTROS</button>
+      </div>
+      <div id="projects-grid">
+        <div class="projects-loading">[ CARGANDO REPOS... ]</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ SKILLS PAGE ═══ -->
+  <div id="page-skills" class="page fade-in">
+    <section class="section">
+      <div class="section-title">HABILIDADES</div>
+      <div class="neon-line"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+        <div class="project-card">
+          <div class="section-title" style="font-size:1rem;margin-bottom:1rem">⚡ FRONTEND</div>
+          <div class="skill-chips">
+            <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span>
+            <span class="chip">React</span><span class="chip">Vue</span><span class="chip">TypeScript</span>
+            <span class="chip">Tailwind</span><span class="chip">SASS</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="section-title" style="font-size:1rem;margin-bottom:1rem">🔧 BACKEND</div>
+          <div class="skill-chips">
+            <span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">FastAPI</span>
+            <span class="chip">Express</span><span class="chip">REST APIs</span><span class="chip">GraphQL</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="section-title" style="font-size:1rem;margin-bottom:1rem">🗄️ BASE DE DATOS</div>
+          <div class="skill-chips">
+            <span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span>
+            <span class="chip">Redis</span><span class="chip">Firebase</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="section-title" style="font-size:1rem;margin-bottom:1rem">🛠️ HERRAMIENTAS</div>
+          <div class="skill-chips">
+            <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Docker</span>
+            <span class="chip">Linux</span><span class="chip">VS Code</span><span class="chip">Figma</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:3rem;">
+        <div class="section-title" style="font-size:1rem;margin-bottom:1.5rem">📊 LENGUAJES (según GitHub)</div>
+        <div id="lang-bars">
+          <div class="projects-loading">[ CARGANDO STATS... ]</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ GALLERY PAGE ═══ -->
+  <div id="page-gallery" class="page fade-in">
+    <section class="section" id="gallery">
+      <div class="section-title">GALERÍA DE JUEGOS</div>
+      <p class="section-desc">Pasarela infinita de los videojuegos más icónicos</p>
+      <div class="neon-line"></div>
+      <div class="gallery-track">
+        <div class="gallery-inner" id="gallery-inner"></div>
+      </div>
+      <div style="margin-top:3rem;text-align:center;">
+        <div class="section-title" style="justify-content:center;font-size:1rem;margin-bottom:1.5rem">🎮 GALERÍA COMPLETA</div>
+        <div id="gallery-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:1rem;"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ GOKU MINI-GAME PAGE ═══ -->
+  <div id="page-goku" class="page fade-in">
+    <section class="section" id="goku-section">
+      <span class="deco-pixel" style="top:10%;left:5%">⭐</span>
+      <span class="deco-pixel" style="top:15%;right:8%;animation-delay:1.5s">💥</span>
+      <div class="goku-arena">
+        <div class="section-title" style="justify-content:center;margin-bottom:2rem">🔥 GOKU VS PORTAFOLIO</div>
+        <div id="goku-canvas">
+          <div class="goku-sprite" id="goku-sprite">🐉</div>
+          <div class="energy-beam" id="energy-beam"></div>
+          <div class="portfolio-target" id="portfolio-target">💻</div>
+        </div>
+        <div class="goku-ui">
+          <p>¡PRESIONA EL BOTÓN PARA QUE GOKU ATAQUE EL PORTAFOLIO!</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <button id="goku-btn" onclick="gokuAttack()">⚡ KAMEHAMEHA!</button>
+            <button class="btn btn-ghost" style="font-family:var(--font-pixel);font-size:.4rem;padding:.6rem 1.2rem;" onclick="showPage('projects')">📁 VER PROYECTOS</button>
+          </div>
+        </div>
+        <div class="ki-balls" id="ki-balls"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ ABOUT PAGE ═══ -->
+  <div id="page-about" class="page fade-in">
+    <section class="section" id="about">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-title" style="font-size:1.5rem;margin-bottom:1.5rem">SOBRE MÍ</div>
+          <p>Soy un desarrollador que combina la pasión por los videojuegos con el arte de programar. Cada proyecto es una nueva misión, cada bug es un jefe final por vencer.</p>
+          <p>Me especializo en crear experiencias web completas: desde el pixel perfecto en el front-end hasta la arquitectura sólida en el back-end.</p>
+          <p>Mi inventario incluye frameworks modernos, buenas prácticas de código, y un nivel infinito de curiosidad por aprender nuevas tecnologías.</p>
+          <div class="skill-chips" style="margin-top:1.5rem;">
+            <span class="chip">Full Stack</span><span class="chip">UI/UX</span>
+            <span class="chip">API Design</span><span class="chip">Open Source</span>
+          </div>
+          <div style="margin-top:2rem;">
+            <a class="btn btn-primary" href="https://github.com/ypd651" target="_blank">🐙 PERFIL GITHUB</a>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div style="font-size:7rem;animation:pfloat 3s ease-in-out infinite;">🧑‍💻</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ CONTACT PAGE ═══ -->
+  <div id="page-contact" class="page fade-in">
+    <section class="section" id="contact">
+      <div class="section-title" style="justify-content:center;margin-bottom:.5rem">CONTACTO</div>
+      <p class="section-desc" style="text-align:center">¿Tienes una misión para mí? ¡Hablemos!</p>
+      <div class="neon-line"></div>
+      <div class="contact-grid">
+        <a class="contact-card" href="https://github.com/ypd651" target="_blank">
+          <span class="icon">🐙</span>
+          <h4>GITHUB</h4>
+          <p>@ypd651</p>
+        </a>
+        <div class="contact-card" onclick="copyEmail()">
+          <span class="icon">📧</span>
+          <h4>EMAIL</h4>
+          <p id="email-txt">Click para copiar</p>
+        </div>
+        <div class="contact-card" onclick="openModal({name:'CV / RESUME',description:'Descarga mi currículum actualizado con todos mis proyectos y experiencia.'})">
+          <span class="icon">📄</span>
+          <h4>CURRICULUM</h4>
+          <p>Ver & Descargar</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 YPD651 — BUILT WITH <span>♥</span> & CAFFEINE — <span>INSERT COIN TO CONTINUE</span></p>
+  </footer>
+
+</main>
+
+<!-- MODAL OVERLAY -->
+<div id="modal-overlay" onclick="closeModalCheck(event)">
+  <div id="modal-box">
+    <button id="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-lang-badge" class="modal-lang"></div>
+    <h2 id="modal-title"></h2>
+    <p id="modal-desc"></p>
+    <div class="modal-stats" id="modal-stats"></div>
+    <div id="modal-readme-wrap" style="display:none;">
+      <div class="modal-section-title">README / DESCRIPCIÓN DETALLADA</div>
+      <div id="modal-readme"></div>
+    </div>
+    <div class="modal-btns" id="modal-btns"></div>
+  </div>
+</div>
+
+<script src="scripy.js"></script>
+</body>
+</html>
