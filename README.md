@@ -1,169 +1,59 @@
-# 🎮 Portafolio Digital
+# Portafolio Virtual — Yeison Pallares
 
-Este proyecto corresponde a mi portafolio personal como desarrollador. Fue diseñado con una temática inspirada en los videojuegos retro y el estilo cyberpunk, con el objetivo de presentar mis proyectos, habilidades y perfil de una forma visual e interactiva.
+Sitio web personal para mostrar mis proyectos, mi formación y mis repositorios de GitHub. Construido con HTML, CSS y JavaScript puros, sin frameworks ni dependencias de build.
 
----
+## Estructura del proyecto
 
-# 📌 Características principales
-
-* Diseño responsive para diferentes dispositivos.
-* Interfaz con temática gamer y efectos visuales.
-* Consumo de la API pública de GitHub.
-* Visualización automática de repositorios.
-* Estadísticas de GitHub.
-* Modal para consultar información de cada proyecto.
-* Galería interactiva de videojuegos favoritos.
-* Animaciones y efectos con CSS.
-
----
-
-# 📂 Estructura del proyecto
-
-```text
-PORTAFOLIO-DIGITAL/
-│
-├── index.html      # Estructura principal del sitio
-├── styles.css      # Estilos, animaciones y diseño visual
-├── scripy.js       # Funcionalidad e interacción de la página
-└── README.md       # Documentación del proyecto
+```
+portafolio-yeison/
+├── index.html   → contenido y estructura del sitio
+├── style.css    → estilos, paleta de colores y modo oscuro
+├── script.js    → interactividad (tema, menú, scroll, GitHub)
+└── README.md
 ```
 
----
+## Qué se implementó
 
-# 📄 index.html
+### Diseño y layout
+- Barra lateral fija con foto/avatar, nombre, rol, ubicación y navegación por secciones.
+- Contenido principal a la derecha, dividido en secciones: Inicio, Sobre mí, Formación, Proyectos, GitHub y Contacto.
+- Proyectos presentados como entradas numeradas en orden cronológico, con su fecha, descripción y tecnologías usadas.
+- Paleta de colores cálida (tonos cobre y ámbar sobre fondo crema/marrón), con tipografías Fraunces, Work Sans y JetBrains Mono.
+- Diseño totalmente responsive: en pantallas pequeñas la barra lateral se convierte en un menú deslizable activado con un botón hamburguesa.
 
-Es el archivo principal del proyecto.
+### Modo oscuro
+- Botón para alternar entre modo claro y oscuro desde la barra lateral.
+- La preferencia elegida se guarda en el navegador (`localStorage`), así que se mantiene al volver a entrar.
+- Si no hay preferencia guardada, el sitio detecta automáticamente si el sistema operativo usa modo oscuro.
 
-Contiene toda la estructura del portafolio, incluyendo:
+### Navegación
+- Scroll suave al hacer clic en los enlaces del menú.
+- La sección visible en pantalla se resalta automáticamente en el menú mientras se hace scroll (usando `IntersectionObserver`).
+- El menú móvil se cierra solo al seleccionar una sección.
 
-* Página de inicio (Hero).
-* Barra lateral de navegación.
-* Sección de proyectos.
-* Estadísticas de GitHub.
-* Galería de videojuegos.
-* Ventanas modales.
-* Información de contacto.
+### Repositorios de GitHub en vivo
+- La sección "GitHub" consulta la API pública de GitHub (`api.github.com/users/ypd651/repos`) y muestra los 6 repositorios más recientes con su nombre, descripción, lenguaje principal y estrellas.
+- Como se actualiza en cada carga del sitio, cualquier proyecto nuevo que subas a GitHub aparece automáticamente aquí, sin tener que editar el código del portafolio.
+- Si la consulta falla (por ejemplo, sin conexión), se muestra un mensaje alternativo con un enlace directo al perfil de GitHub.
 
-Desde este archivo se enlazan los estilos y el archivo JavaScript.
+### Accesibilidad
+- Estados de foco visibles para navegación por teclado.
+- Etiquetas `aria-label` y `aria-expanded` en los botones de tema y menú móvil.
+- Animaciones reducidas automáticamente si el usuario tiene activada la preferencia `prefers-reduced-motion`.
 
----
+## Cómo verlo localmente
 
-# 🎨 styles.css
+Solo abre `index.html` en el navegador. No requiere instalación ni servidor.
 
-Este archivo controla toda la apariencia del sitio.
+## Cómo publicarlo (GitHub Pages)
 
-Aquí se encuentran:
+1. Sube esta carpeta a un repositorio de tu GitHub (por ejemplo, `portafolio`).
+2. Entra a **Settings → Pages** del repositorio.
+3. En "Source", selecciona la rama `main` y la carpeta `/root`.
+4. Guarda: tu sitio quedará publicado en `https://ypd651.github.io/portafolio`.
 
-* Colores de la interfaz.
-* Tipografías.
-* Diseño responsive.
-* Animaciones.
-* Efectos de iluminación.
-* Tarjetas de proyectos.
-* Botones.
-* Modales.
-* Barra lateral.
+## Pendientes / ideas para después
 
-Su función principal es hacer que el portafolio tenga una apariencia moderna con una estética gamer.
-
----
-
-# ⚙️ scripy.js
-
-Este archivo contiene toda la lógica del proyecto.
-
-Entre sus funciones principales se encuentran:
-
-## Obtención de repositorios
-
-Consume la API de GitHub para obtener automáticamente:
-
-* Repositorios.
-* Lenguaje utilizado.
-* Estrellas.
-* Forks.
-* Fecha de actualización.
-
----
-
-## Estadísticas
-
-Calcula información como:
-
-* Número de repositorios.
-* Seguidores.
-* Total de estrellas.
-* Lenguajes utilizados.
-
----
-
-## Proyectos
-
-Genera dinámicamente las tarjetas de cada repositorio utilizando la información obtenida desde GitHub.
-
-También permite filtrar proyectos según el lenguaje de programación.
-
----
-
-## Ventanas modales
-
-Cuando el usuario selecciona un proyecto se abre una ventana donde puede visualizar:
-
-* Nombre.
-* Descripción.
-* Lenguaje.
-* Estadísticas.
-* README del repositorio.
-* Enlace directo a GitHub.
-
----
-
-## Galería
-
-Genera automáticamente una galería con videojuegos favoritos utilizando un arreglo de datos.
-
-Cada tarjeta puede abrir una ventana con información adicional.
-
----
-
-# 🌐 API utilizada
-
-El proyecto utiliza la API pública de GitHub para obtener información del perfil.
-
-Información consultada:
-
-* Perfil del usuario.
-* Repositorios públicos.
-* README de cada repositorio.
-* Estadísticas de los proyectos.
-
----
-
-# 🛠️ Tecnologías utilizadas
-
-* HTML5
-* CSS3
-* JavaScript (Vanilla)
-* GitHub REST API
-
----
-
-# 🚀 Cómo ejecutar el proyecto
-
-1. Clonar el repositorio.
-
-```bash
-git clone <URL_DEL_REPOSITORIO>
-```
-
-2. Abrir la carpeta del proyecto.
-
-3. Ejecutar el archivo **index.html** en un navegador.
-
-No es necesario instalar dependencias ni utilizar un servidor adicional.
-
----
-
-# 🎯 Objetivo del proyecto
-
-Este portafolio busca presentar de manera organizada mis habilidades, proyectos y experiencia como desarrollador, mostrando información actualizada directamente desde GitHub y ofreciendo una experiencia visual atractiva para quienes visiten el sitio.
+- Reemplazar el avatar con iniciales por una foto real.
+- Añadir enlaces a LinkedIn u otras redes cuando estén disponibles.
+- Sumar nuevos proyectos a la sección "Proyectos" a medida que se completen.
